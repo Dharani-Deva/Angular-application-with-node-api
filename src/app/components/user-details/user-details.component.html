@@ -1,0 +1,38 @@
+<div *ngIf="currentUser" class="edit-form">
+    <h4>Users</h4>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email" />
+        </div>
+
+        <div class="form-group">
+            <label><strong>Status:</strong></label> {{ currentUser.active ? "Active" : "Inactive" }}
+        </div>
+    </form>
+
+    <button class="badge badge-primary mr-2" *ngIf="currentUser.active" (click)="updateActive(false)">
+    Inactive
+  </button>
+    <button class="badge badge-primary mr-2" *ngIf="!currentUser.active" (click)="updateActive(true)">
+    Active
+  </button>
+
+    <button class="badge badge-danger mr-2" (click)="deleteUser()">
+    Delete User
+  </button>
+
+    <button type="submit" class="badge badge-success" (click)="updateUser()">
+    Update User
+  </button>
+    <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentUser">
+    <br />
+    <p>User not found...</p>
+</div>
